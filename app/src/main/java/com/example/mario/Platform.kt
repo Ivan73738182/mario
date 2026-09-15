@@ -14,18 +14,18 @@ class Platform(
 ) {
 
     companion object {
-        const val TYPE_GROUND = 0   // земля (коричневая)
-        const val TYPE_BRICK = 1    // кирпич (оранжевый)
-        const val TYPE_BLOCK = 2    // блок (серый)
-        const val TYPE_GOAL = 3     // финиш (зелёный)
+        const val TYPE_GROUND = 0
+        const val TYPE_BRICK = 1
+        const val TYPE_BLOCK = 2
+        const val TYPE_GOAL = 3
     }
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = when (type) {
-            TYPE_GROUND -> Color.parseColor("#8B4513")   // коричневый
-            TYPE_BRICK -> Color.parseColor("#D2691E")    // оранжевый
-            TYPE_BLOCK -> Color.parseColor("#808080")    // серый
-            TYPE_GOAL -> Color.parseColor("#4CAF50")     // зелёный
+            TYPE_GROUND -> Color.parseColor("#8B4513")
+            TYPE_BRICK -> Color.parseColor("#D2691E")
+            TYPE_BLOCK -> Color.parseColor("#808080")
+            TYPE_GOAL -> Color.parseColor("#4CAF50")
             else -> Color.GRAY
         }
     }

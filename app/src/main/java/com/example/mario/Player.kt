@@ -17,32 +17,27 @@ class Player(startX: Float, startY: Float) {
 
     var onGround = false
 
-    // Настройки физики
     private val moveSpeed = 8f
     private val gravity = 0.9f
     private val jumpPower = -20f
     private val maxFallSpeed = 25f
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.parseColor("#E53935") // красный
+        color = Color.parseColor("#E53935")
     }
 
     fun update(viewWidth: Float, viewHeight: Float) {
-        // Гравитация
         vy += gravity
         if (vy > maxFallSpeed) vy = maxFallSpeed
 
-        // Движение
         x += vx
         y += vy
 
-        // Границы экрана
         if (x < 0) { x = 0f; vx = 0f }
         if (x + width > viewWidth) { x = viewWidth - width; vx = 0f }
 
-        // Падение в яму (ниже экрана) — потом обработаем смерть
         if (y > viewHeight) {
-            y = viewHeight.toFloat()
+            y = viewHeight
             vy = 0f
         }
     }
@@ -59,10 +54,8 @@ class Player(startX: Float, startY: Float) {
     }
 
     fun draw(canvas: Canvas) {
-        // Тело
         canvas.drawRect(x, y, x + width, y + height, paint)
 
-        // Глаза (белые с чёрными зрачками)
         val eyePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE }
         val pupilPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.BLACK }
 
@@ -71,7 +64,6 @@ class Player(startX: Float, startY: Float) {
         canvas.drawCircle(x + width * 0.35f, y + height * 0.3f, 3f, pupilPaint)
         canvas.drawCircle(x + width * 0.65f, y + height * 0.3f, 3f, pupilPaint)
 
-        // Рот
         val mouthPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = Color.BLACK
             strokeWidth = 3f
